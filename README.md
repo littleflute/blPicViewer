@@ -1,3 +1,5 @@
+[v0.0.2](https://github.com/littleflute/blPicViewer/edit/master/README.md)
+
 ~~~html
 <!DOCTYPE html>	  
 <html>  
