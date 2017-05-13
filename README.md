@@ -1,4 +1,32 @@
-[v0.0.2](https://github.com/littleflute/blPicViewer/edit/master/README.md)
+
+[v0.0.3](https://github.com/littleflute/blPicViewer/edit/master/README.md)
+
+
+<br> 
+<div id="divCurPic"></div> 
+<br> 
+<button onclick="show(1)">+1</button>
+
+<button onclick="show(-1)">-1</button> <br>
+<img id="myImg"   src="https://littleflute.github.io/b44/044/DSC_4726.JPG" > 
+</img>  
+<br>
+
+<script>  
+var vid = document.getElementById("myImg"); 
+var n = 4726;
+function show(i) {
+    n += i;
+    var s = "https://littleflute.github.io/b44/";
+    s += "044/DSC_";
+    s += n;
+    s += ".JPG";
+	  document.getElementById("divCurPic").innerHTML = s;  
+    vid.src = s;
+} 
+</script> 
+
+
 
 ~~~html
 <!DOCTYPE html>	  
