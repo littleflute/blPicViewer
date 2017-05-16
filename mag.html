@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -33,6 +34,61 @@
 
 var magnifier = 
 {
+	v			: "v0.1.6",
+	
+    onBtnTest	: function(o)
+    {
+    	var id = "x" + o.parentElement.id;
+      	var x = document.getElementById(id);
+    	if(x.style.display == "none")
+    	{
+    		x.style.display = "block";
+        	o.innerHTML = "-";
+       	 o.style.color = "red";
+    	}
+    	else
+    	{
+    		x.style.display = "none";
+        	o.innerHTML = "+";
+        	o.style.color = "green";
+    	}
+    },
+	bShowMe		: false,
+	showMe2Div : function(btn,divId)
+	{
+		var x;
+		var h = document.getElementById(divId);
+		if(!h) return; 
+
+		this.bShowMe = !this.bShowMe;
+		btn.innerHTML = this.bShowMe?"-":"+";
+		if(!this.bShowMe) {h.innerHTML = ""; return;}
+
+        var nID = 0;
+		for(x in this)
+		{
+        	nID++;
+            
+			var d = document.createElement("div");
+			d.id = nID;
+            d.onFun = this.onBtnTest;
+            d.innerHTML = x;
+            var bt= "<button onclick='this.parentElement.onFun(this)'>";
+            bt += "+</button>";
+			d.innerHTML += bt;
+            d.style.border = "solid 1px blue";
+			d.style.color = "red";
+			h.appendChild(d); 
+            
+			var v = document.createElement("div");
+            v.id = "x" + nID;
+			v.innerHTML = this[x];
+			v.style.border = "solid 1px green";
+			v.style.color = "black";
+            v.style.display = "none";
+			d.appendChild(v); 
+		} 
+	},
 	getEventObject : function (W3CEvent) 
 	{ 
 		return W3CEvent || window.event;
@@ -74,6 +130,8 @@ var magnifier =
 
 	init:function(magni){
 		var m = this.m = magni || {	cont : null,  img : null,  	mag : null,  scale : 15	};
+		var h = document.getElementById('pageVer');
+		if(h) h.innerHTML = this.v;
 		magnifier.css(m.img,{
 			'position' : 'absolute',
 			'width' : (m.cont.clientWidth * m.scale) + 'px',  
@@ -180,9 +238,9 @@ function add(i)
 </SCRIPT>
 </head>
 <body>
-	<a href ="https://github.com/littleflute/blPicViewer/edit/master/mag.html">V0.0.1</a>
+	<a target="_blank" href   ="https://github.com/littleflute/blPicViewer/edit/master/mag.html" id="pageVer"></a>
 	<br>
-<button onclick="add(1);">+1</button><br>
+<button onclick="add(1);">+1</button><button onclick="magnifier.showMe2Div(this,'code');">+</button><br>
     <div id="magnifier">
         <img src="https://littleflute.github.io/b108/b108/DSC_1618.JPG" id="img" />
         <div id="Browser">
@@ -190,10 +248,12 @@ function add(i)
     </div>
     <div id="mag">
         <img id="magnifierImg" />
-    </div>
-    <select style="position:absolute;top:200px;left:650px;width:100px;">
+    </div> 
+
+    <select style="position:absolute;top:100px;left:450px;width:100px;">
         <option>select test  for IE6</option>
         <option>over test for IE6</option>
     </select>
+	<div id="code" style="position:absolute;top:150px;left:450px;width:400px;"></div>
 </body>
 </html>
