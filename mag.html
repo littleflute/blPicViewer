@@ -30,29 +30,30 @@
 }
 </style>
 <script type="text/javascript">
-function getEventObject(W3CEvent) 
-{ 
-	return W3CEvent || window.event;
-}
-function setOpacity(elem,level) 
-{
-	if(elem.filters) {
-		elem.style.filter = 'alpha(opacity=' + level * 100 + ')';
-	}
-	else 
-	{
-		elem.style.opacity = level;
-	}
-}
 
 var magnifier = 
 {
+	getEventObject : function (W3CEvent) 
+	{ 
+		return W3CEvent || window.event;
+	},
+	setOpacity : function (elem,level) 
+	{
+		if(elem.filters) {
+			elem.style.filter = 'alpha(opacity=' + level * 100 + ')';
+		}
+		else 
+		{
+			elem.style.opacity = level;
+		}
+	},
+
 	css : function (elem,prop) 
 	{ 
 		for(var i in prop) 
 		{
 			if(i == 'opacity') {
-				setOpacity(elem,prop[i]);
+				magnifier.setOpacity(elem,prop[i]);
 			}
 			else 
 			{
@@ -63,7 +64,7 @@ var magnifier =
 	},
 	getPointerPosition : function (e) 
 	{ 
-		e = e || getEventObject(e);
+		e = e || magnifier.getEventObject(e);
 		var x = e.pageX || (e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
 		var y = e.pageY || (e.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
 		return { 'x':x,'y':y };
@@ -179,6 +180,8 @@ function add(i)
 </SCRIPT>
 </head>
 <body>
+	<a href ="https://github.com/littleflute/blPicViewer/edit/master/mag.html">V0.0.1</a>
+	<br>
 <button onclick="add(1);">+1</button><br>
     <div id="magnifier">
         <img src="https://littleflute.github.io/b108/b108/DSC_1618.JPG" id="img" />
@@ -189,8 +192,8 @@ function add(i)
         <img id="magnifierImg" />
     </div>
     <select style="position:absolute;top:200px;left:650px;width:100px;">
-        <option>select??</option>
-        <option>?????</option>
+        <option>select test  for IE6</option>
+        <option>over test for IE6</option>
     </select>
 </body>
 </html>
