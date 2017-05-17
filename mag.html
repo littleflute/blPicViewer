@@ -211,13 +211,13 @@ var magnifier =
    layers[0].parentNode.removeChild(layers[0]);
   }
  },
- 	
+ 	src	: "https://littleflute.github.io/b108/b108/DSC_",
     n 	: 1618,
 	add : function (i)
 	{
 		this.n += i;
 		var o = document.getElementById('magnifierImg');
-    	var s ="https://littleflute.github.io/b108/b108/DSC_";
+    	var s =this.src;
     	s += this.n;
     	s += ".JPG";
     	o.src = s;
@@ -225,7 +225,13 @@ var magnifier =
     	o.src = s;
     
 	},
-	v			: "v0.1.8"
+    
+	setSrc : function ()
+	{
+		var i = document.getElementById("src");
+    	this.src = i.value;
+	},
+	v			: "v0.2.0"
 }
 window.onload = function(){
  magnifier.init({
@@ -235,13 +241,14 @@ window.onload = function(){
        scale : 3
        });
 }
-
 //
 </SCRIPT>
 </head>
 <body>
 	<a target="_blank" href   ="https://github.com/littleflute/blPicViewer/edit/master/mag.html" id="pageVer"></a>
 	<br>
+<input type="text" id="src"  value="https://littleflute.github.io/b108/b108/DSC_"> 
+<button onclick=" magnifier.setSrc();">src</button>
 <button onclick="magnifier.add(1);">+1</button><button onclick="magnifier.showMe2Div(this,'code');">+</button><br>
     <div id="magnifier">
         <img src="https://littleflute.github.io/b108/b108/DSC_1618.JPG" id="img" />
