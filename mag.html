@@ -34,7 +34,6 @@
 
 var magnifier = 
 {
-	v			: "v0.1.6",
 	
     onBtnTest	: function(o)
     {
@@ -211,7 +210,22 @@ var magnifier =
   while(layers.length >0){
    layers[0].parentNode.removeChild(layers[0]);
   }
- }
+ },
+ 	
+    n 	: 1618,
+	add : function (i)
+	{
+		this.n += i;
+		var o = document.getElementById('magnifierImg');
+    	var s ="https://littleflute.github.io/b108/b108/DSC_";
+    	s += this.n;
+    	s += ".JPG";
+    	o.src = s;
+		o = document.getElementById('img');
+    	o.src = s;
+    
+	},
+	v			: "v0.1.8"
 }
 window.onload = function(){
  magnifier.init({
@@ -221,26 +235,14 @@ window.onload = function(){
        scale : 3
        });
 }
-var n = 1618;
-function add(i)
-{
-	n += i;
-	var o = document.getElementById('magnifierImg');
-    var s ="https://littleflute.github.io/b108/b108/DSC_";
-    s += n;
-    s += ".JPG";
-    o.src = s;
-	o = document.getElementById('img');
-    o.src = s;
-    
-}
+
 //
 </SCRIPT>
 </head>
 <body>
 	<a target="_blank" href   ="https://github.com/littleflute/blPicViewer/edit/master/mag.html" id="pageVer"></a>
 	<br>
-<button onclick="add(1);">+1</button><button onclick="magnifier.showMe2Div(this,'code');">+</button><br>
+<button onclick="magnifier.add(1);">+1</button><button onclick="magnifier.showMe2Div(this,'code');">+</button><br>
     <div id="magnifier">
         <img src="https://littleflute.github.io/b108/b108/DSC_1618.JPG" id="img" />
         <div id="Browser">
