@@ -5,11 +5,12 @@
 </head>
 <body>
  
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+<h1>function blCode() </h1>
+<p> by littleflute</p>
 <script>
 function blCode()
 {
+	this.bl = "BeautifulLover";
 	var h = document.getElementById("blCodeDiv");
     if(!h) {
     	h = document.createElement("div");
@@ -20,11 +21,10 @@ function blCode()
 	this.Home = h;
     
     this.btn = document.createElement("Button");
-    this.btn.bl	= "BeauitfulLover";
+    this.btn.bl	= "BeautifulLover";
     this.btn.innerHTML = "+";
-    this.btn.xdVar	= this;
-    this.btn.b	=false;
-    
+    this.btn.Parent	= this;
+    this.btn.b	=false; 
     this.btn.onclick = function()
     { 
     	this.b		= !this.b;
@@ -32,43 +32,54 @@ function blCode()
         this.innerHTML = this.b?"-":"+";
         if(this.b)
         {
-        	this.xdVar.showObj(this);
+        	this.Parent.showObj(this.Parent);
         }
         else
         {
-        	this.xdVar.Home.innerHTML = "";
-            this.xdVar.Home.appendChild(this);
+        	this.Parent.Home.innerHTML = "";
+            this.Parent.Home.appendChild(this);
         }
     }
     h.appendChild(this.btn);
      
     
-    this.addDiv = function(txt)
+    this.addDiv = function(txt,clr)
     {
     	var d = document.createElement("div");
         d.innerHTML = txt;
-        d.style.backgroundColor = "blue";
+        d.style.backgroundColor = clr;
 		d.style.border = "solid 1px green";
 		d.style.color = "yellow";
         this.Home.appendChild(d);
-    }
-    this.showMe = function()
-    {
-    	for(x in this)
-        {
-        	this.addDiv(x);
-        }
-    }
+        return d;
+    } 
     
     this.showObj = function(o)
     {
-    	if(o.bl!="BeauitfulLover") return;
-    	for(x in o)
+    	if(o.bl!="BeautifulLover") 
         {
-        	this.addDiv(x);
+        	this.addDiv("not a BeautifulLover!","red");
+        	return;
+        }
+    	for(x in o)
+        { 
+        	var d = this.addDiv(x,"blue");
+            var btn = document.createElement("button");
+            btn.innerHTML = "+";
+            d.appendChild(btn);
+            btn.b = false;
+            btn.vDiv = document.createElement("div");
+            btn.v = o[x];
+            btn.onclick = function()
+            {
+            	this.b = !this.b;
+            	this.innerHTML = this.b?"-":"+";
+                this.vDiv.innerHTML = this.b?this.v:"";
+            }  
+            d.appendChild(btn.vDiv); 
         }
     }
-    this.v = "0.0.2";
+    this.v = "0.0.5";
 }
 var c = new blCode(); 
 
