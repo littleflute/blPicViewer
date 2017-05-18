@@ -4,8 +4,7 @@
 <title>Page Title</title>
 </head>
 <body>
-
-<div id="blCodeDiv"></div>
+ 
 <h1>This is a Heading</h1>
 <p>This is a paragraph.</p>
 <script>
@@ -19,9 +18,31 @@ function blCode()
     }
     h.style.border = "1px red solid";
 	this.Home = h;
-    var btn = document.createElement("Button");
-    btn.innerHTML = "+";
-    h.appendChild(btn);
+    
+    this.btn = document.createElement("Button");
+    this.btn.bl	= "BeauitfulLover";
+    this.btn.innerHTML = "+";
+    this.btn.xdVar	= this;
+    this.btn.b	=false;
+    
+    this.btn.onclick = function()
+    { 
+    	this.b		= !this.b;
+         
+        this.innerHTML = this.b?"-":"+";
+        if(this.b)
+        {
+        	this.xdVar.showObj(this);
+        }
+        else
+        {
+        	this.xdVar.Home.innerHTML = "";
+            this.xdVar.Home.appendChild(this);
+        }
+    }
+    h.appendChild(this.btn);
+     
+    
     this.addDiv = function(txt)
     {
     	var d = document.createElement("div");
@@ -41,17 +62,16 @@ function blCode()
     
     this.showObj = function(o)
     {
+    	if(o.bl!="BeauitfulLover") return;
     	for(x in o)
         {
         	this.addDiv(x);
         }
     }
-    
+    this.v = "0.0.2";
 }
-var c = new blCode();
-c.addDiv("111");
-c.addDiv("22");
-c.showObj(c.Home);
+var c = new blCode(); 
+
 </script>
 </body>
 </html>
