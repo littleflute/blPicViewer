@@ -1,7 +1,9 @@
 
-[v0.0.4](https://github.com/littleflute/blPicViewer/edit/master/README.md)
+[v0.0.5](https://github.com/littleflute/blPicViewer/edit/master/README.md)
 
 [magnifier](mag.html)
+
+[blCode](code.html)
 
 <br> 
 <div id="divCurPic"></div> 
