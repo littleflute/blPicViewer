@@ -64,22 +64,28 @@ function blCode()
     	for(x in o)
         { 
         	var d = this.addDiv(x,"blue");
-            var btn = document.createElement("button");
-            btn.innerHTML = "+";
-            d.appendChild(btn);
-            btn.b = false;
-            btn.vDiv = document.createElement("div");
-            btn.v = o[x];
-            btn.onclick = function()
-            {
+            this.addOnOffBtn_V_2_Div(d,o[x]);
+        }
+    }
+    this.addOnOffBtn_V_2_Div = function(Div,v)
+    { 
+    	var d = Div;
+        if(!d) return;
+        var btn = document.createElement("button");
+        btn.innerHTML = "+";
+        d.appendChild(btn);
+        btn.b = false;
+        btn.vDiv = document.createElement("div");
+        btn.v = v;
+        btn.onclick = function()
+        {
             	this.b = !this.b;
             	this.innerHTML = this.b?"-":"+";
                 this.vDiv.innerHTML = this.b?this.v:"";
-            }  
-            d.appendChild(btn.vDiv); 
-        }
-    }
-    this.v = "0.0.5";
+        }  
+        d.appendChild(btn.vDiv);
+    };
+    this.v = "0.0.6";
 }
 var c = new blCode(); 
 
